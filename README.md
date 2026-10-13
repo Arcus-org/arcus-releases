@@ -1,28 +1,53 @@
 ﻿# Arcus releases
 
-Desktop installers for [Arcus](https://arcusai.netlify.app): the investigation desk for support and solutions engineers.
+Desktop installers for [Arcus](https://arcusai.netlify.app).
 
-Live transcript, local repo search, investigation notes, Slack, and ticket updates. Jira, Zendesk, ServiceNow, and Teams connect after your org's app or token is saved. MCP logs are Settings, Tools and MCP, in the app.
+The website is the current public description of the product. The files in GitHub Releases are not.
 
-## Current download
+## Public site
 
-Published release: **[v1.4.1](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.1)** (2026-07-09).
+https://arcusai.netlify.app
 
-Latest feed: https://github.com/Arcus-org/arcus-releases/releases/latest
+Checked 2026-10-13 after the production deploy. The homepage is the investigation desk. The hero sentence is:
 
-| Platform | File |
-| --- | --- |
-| Windows x64 | `Arcus-Setup-1.4.1.exe` |
-| macOS Apple silicon | `Arcus-1.4.1-arm64.dmg` |
-| macOS | `Arcus-1.4.1.dmg` |
-| Linux AppImage | `Arcus-1.4.1.AppImage` |
-| Linux deb | `arcus-desktop_1.4.1_amd64.deb` |
+> Arcus is the desktop investigation desk for support and solutions engineers.
 
-Auto-update manifests on that release: `latest.yml` (Windows), `latest-mac.yml`, `latest-linux.yml`.
+The example on that page is a Spinnaker pipeline failure: “A Spinnaker pipeline failure, investigated in Arcus.” The finding names `WaitForManifestStableTask` on Deploy Manifest.
 
-The public download page reads `https://api.github.com/repos/Arcus-org/arcus-releases/releases/latest`.
+That deploy is Netlify deploy `6aceb15d1c3f878fdb88ae7e` on the existing site `arcusai` (`1d53db9b-1ce2-475f-a0c2-8846ad918168`). The site is not connected to a Git repo, so production came from the Netlify CLI, not from a push to `main`.
 
-## Build pointers
+Site source: `arcus-core` branch `site/investigation-desk-intro` at `945c25c`. `arcus-core` `main` is still `e79c2f4` (2026-10-08).
+
+## Downloadable installers
+
+Latest GitHub Release: **[v1.4.1](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.1)**, published 2026-07-09.
+
+These July 9, 2026 binaries are still the only installers. They are not the current product. They do not include later desktop work:
+
+- transcript client
+- connectors
+- model list
+- Teams panel
+- Ask Arcus
+- local repo
+
+`desktop/package.json` in `arcus-core` is still `1.4.1`. No newer Windows, Mac, or Linux installer was built or uploaded. No version bump. No new GitHub Release.
+
+A macOS `.dmg` cannot be built on Windows. This update did not produce one, and it did not replace the July Mac files.
+
+| Platform | File | Published |
+| --- | --- | --- |
+| Windows x64 | `Arcus-Setup-1.4.1.exe` | 2026-07-09 |
+| macOS Apple silicon | `Arcus-1.4.1-arm64.dmg` | 2026-07-09 |
+| macOS | `Arcus-1.4.1.dmg` | 2026-07-09 |
+| Linux AppImage | `Arcus-1.4.1.AppImage` | 2026-07-09 |
+| Linux deb | `arcus-desktop_1.4.1_amd64.deb` | 2026-07-09 |
+
+Auto-update manifests on that same release: `latest.yml`, `latest-mac.yml`, `latest-linux.yml`.
+
+The public download page reads https://github.com/Arcus-org/arcus-releases/releases/latest, so it still offers these July apps.
+
+## When a new installer is actually built
 
 Source repo: https://github.com/Arcus-org/arcus-core
 
@@ -33,47 +58,14 @@ Source repo: https://github.com/Arcus-org/arcus-core
 - repo: `arcus-releases`
 - releaseType: `release`
 
-`desktop/package.json` version today: **1.4.1** (same string as the July installer).
-
-Commands, from `desktop/` on a clean commit:
+Commands, from `desktop/` on a clean commit, after the version is bumped:
 
 - Windows: `npm run dist:win`
-- macOS unsigned: `npm run dist:mac` (`CSC_IDENTITY_AUTO_DISCOVERY=false`, notarize skipped)
+- macOS unsigned: `npm run dist:mac` (`CSC_IDENTITY_AUTO_DISCOVERY=false`, notarize skipped). This has to run on a Mac.
 - Linux: `npm run dist:linux`
 
 electron-builder uploads to this repo. Do not force-push `main`. Do not commit API keys or customer tokens.
 
 Production API the desk calls: `https://arcus-api-production-a4fc.up.railway.app` (`GET /health` returns `service: arcus`).
 
-## What v1.4.1 is, and is not
-
-The GitHub Release assets are the July 9, 2026 installers. `arcus-core` `main` has moved since then.
-
-| | |
-| --- | --- |
-| Published installer | v1.4.1, 2026-07-09. Release body was empty. |
-| `arcus-core` `main` | `e79c2f4` (2026-10-08), merge of PR #59 (org notifications and SLA metrics) |
-| Working tree | Dirty local changes on top of that commit. Not packaged. |
-
-Do not treat the downloadable 1.4.1 binary as the October source tree. This repo update does not publish a new installer.
-
-## Product the next installer should match
-
-- Investigation desk: Home, Investigate, History, Tickets
-- Live transcript while the engineer stays in their own meeting
-- Local repo index; snippets leave the machine only when you ask
-- Investigation notes and History (Leave keeps a draft, Finish and save closes the case)
-- Slack in Settings
-- Jira as org bring-your-own OAuth, or an API token
-- Zendesk and ServiceNow when that customer's credentials are saved
-- Teams when the Microsoft app is configured; chat search is not Slack search
-- MCP in Settings, Tools and MCP
-- Ticket updates only when posts are on and a tracker is actually connected
-
-## Still open before calling an install current
-
-- No spoken live call has been re-checked on the desktop against production since the Deepgram deploy that stopped sending `diarize=true` next to `diarize_model=v1`.
-- OPENAI_API_KEY is unset on the API, so GPT-6 Luna is hidden from the model list.
-- Teams client env, Zendesk subdomain, and ServiceNow are unset on the API. They are not zero-setup.
-- Mac builds are unsigned. Right-click, Open. Windows SmartScreen needs More info, Run anyway until the installer is signed.
-- A new installer from current `main` has not been built.
+The next installer should match the investigation desk on the site: Home, Investigate, History, Tickets; live transcript; local repo search; notes; Slack; Jira, Zendesk, ServiceNow, and Teams when that customer's app or token is saved; MCP in Settings; ticket updates only when a tracker is connected.
