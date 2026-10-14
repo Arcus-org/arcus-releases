@@ -6,7 +6,7 @@ Installer history for https://github.com/Arcus-org/arcus-releases. Source lives 
 
 Windows installer only. The public site stays https://arcusai.netlify.app.
 
-- `Arcus Setup 1.4.2.exe` (160,822,834 bytes). NSIS setup. Unsigned. No signing certificate. SmartScreen: More info → Run anyway.
+- `Arcus Setup 1.4.2.exe` (160,822,834 bytes), published as `Arcus.Setup.1.4.2.exe`. NSIS setup. Unsigned. No signing certificate. SmartScreen: More info → Run anyway.
 - Mac was not built. No `.dmg` was uploaded.
 - Linux was not built.
 - The July 9, 2026 files are not this app. They remain on v1.4.1.

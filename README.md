@@ -26,9 +26,9 @@ Current desktop: **[1.4.2](https://github.com/Arcus-org/arcus-releases/releases/
 
 | Platform | File | Published |
 | --- | --- | --- |
-| Windows x64 | `Arcus Setup 1.4.2.exe` | 2026-10-13 |
+| Windows x64 | [`Arcus.Setup.1.4.2.exe`](https://github.com/Arcus-org/arcus-releases/releases/download/v1.4.2/Arcus.Setup.1.4.2.exe) | 2026-10-13 |
 
-`Arcus Setup 1.4.2.exe` is an NSIS setup installer (160,822,834 bytes). It is unsigned. There is no signing certificate. Windows SmartScreen will warn: choose **More info**, then **Run anyway**.
+The built NSIS file is `Arcus Setup 1.4.2.exe` (160,822,834 bytes). GitHub stores that same file as `Arcus.Setup.1.4.2.exe`. It is unsigned. There is no signing certificate. Windows SmartScreen will warn: choose **More info**, then **Run anyway**.
 
 Mac was not built. No `.dmg` is on 1.4.2. A Mac installer has to be built on a Mac.
 
