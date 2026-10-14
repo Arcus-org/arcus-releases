@@ -2,7 +2,9 @@
 
 Desktop installers for [Arcus](https://arcusai.netlify.app).
 
-The website is the current public description of the product. The files in GitHub Releases are not.
+The public site is https://arcusai.netlify.app.
+
+The current desktop download is the unsigned Windows installer on **[1.4.2](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.2)**. Mac was not built. The July 9, 2026 files on **[v1.4.1](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.1)** are not the current app.
 
 ## Public site
 
@@ -20,20 +22,21 @@ Site source: `arcus-core` branch `site/investigation-desk-intro` at `945c25c`. `
 
 ## Downloadable installers
 
-Latest GitHub Release: **[v1.4.1](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.1)**, published 2026-07-09.
+Current desktop: **[1.4.2](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.2)**, published 2026-10-13.
 
-These July 9, 2026 binaries are still the only installers. They are not the current product. They do not include later desktop work:
+| Platform | File | Published |
+| --- | --- | --- |
+| Windows x64 | `Arcus Setup 1.4.2.exe` | 2026-10-13 |
 
-- transcript client
-- connectors
-- model list
-- Teams panel
-- Ask Arcus
-- local repo
+`Arcus Setup 1.4.2.exe` is an NSIS setup installer (160,822,834 bytes). It is unsigned. There is no signing certificate. Windows SmartScreen will warn: choose **More info**, then **Run anyway**.
 
-`desktop/package.json` in `arcus-core` is still `1.4.1`. No newer Windows, Mac, or Linux installer was built or uploaded. No version bump. No new GitHub Release.
+Mac was not built. No `.dmg` is on 1.4.2. A Mac installer has to be built on a Mac.
 
-A macOS `.dmg` cannot be built on Windows. This update did not produce one, and it did not replace the July Mac files.
+Linux was not built.
+
+This release does not include `latest.yml`, `latest-mac.yml`, `latest-linux.yml`, or a blockmap. GitHub `releases/latest` is this Windows installer only.
+
+The July 9, 2026 files are not the current app. They stay on **[v1.4.1](https://github.com/Arcus-org/arcus-releases/releases/tag/v1.4.1)**:
 
 | Platform | File | Published |
 | --- | --- | --- |
@@ -43,9 +46,9 @@ A macOS `.dmg` cannot be built on Windows. This update did not produce one, and 
 | Linux AppImage | `Arcus-1.4.1.AppImage` | 2026-07-09 |
 | Linux deb | `arcus-desktop_1.4.1_amd64.deb` | 2026-07-09 |
 
-Auto-update manifests on that same release: `latest.yml`, `latest-mac.yml`, `latest-linux.yml`.
+The July auto-update manifests (`latest.yml`, `latest-mac.yml`, `latest-linux.yml`) stay on that v1.4.1 release. They still describe the July apps.
 
-The public download page reads https://github.com/Arcus-org/arcus-releases/releases/latest, so it still offers these July apps.
+`arcus-core` `main` is still `e79c2f4` (2026-10-08). Desktop version `1.4.2` is commit `70913d2` on `site/investigation-desk-intro`. This installer was built on Windows from that local desktop checkout, including later uncommitted desktop work. It is not an `arcus-core` `main` build.
 
 ## When a new installer is actually built
 
@@ -60,7 +63,7 @@ Source repo: https://github.com/Arcus-org/arcus-core
 
 Commands, from `desktop/` on a clean commit, after the version is bumped:
 
-- Windows: `npm run dist:win`
+- Windows: `npm run dist:win` with `CSC_IDENTITY_AUTO_DISCOVERY=false` and `win.signAndEditExecutable` set to `false`. This Windows account cannot create the winCodeSign symlinks, and there is no signing certificate.
 - macOS unsigned: `npm run dist:mac` (`CSC_IDENTITY_AUTO_DISCOVERY=false`, notarize skipped). This has to run on a Mac.
 - Linux: `npm run dist:linux`
 

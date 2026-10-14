@@ -2,20 +2,26 @@
 
 Installer history for https://github.com/Arcus-org/arcus-releases. Source lives in https://github.com/Arcus-org/arcus-core.
 
-## Unreleased (site updated, no new installer)
+## 1.4.2 — 2026-10-13
 
-2026-10-13. The public site https://arcusai.netlify.app shows the investigation desk and the Spinnaker Deploy Manifest example. No new desktop binary was published.
+Windows installer only. The public site stays https://arcusai.netlify.app.
+
+- `Arcus Setup 1.4.2.exe` (160,822,834 bytes). NSIS setup. Unsigned. No signing certificate. SmartScreen: More info → Run anyway.
+- Mac was not built. No `.dmg` was uploaded.
+- Linux was not built.
+- The July 9, 2026 files are not this app. They remain on v1.4.1.
+- This release does not include `latest.yml`, `latest-mac.yml`, `latest-linux.yml`, or a blockmap.
+- Built on Windows from the local `site/investigation-desk-intro` desktop at version 1.4.2 (version bump `70913d2`), including later uncommitted desktop work. Not an `arcus-core` `main` build. `main` is still `e79c2f4` (2026-10-08).
+
+Site, same day, unchanged by this installer publish:
 
 - Homepage: “Arcus is the desktop investigation desk for support and solutions engineers.” Example: “A Spinnaker pipeline failure, investigated in Arcus” (`WaitForManifestStableTask`).
 - Netlify production deploy `6aceb15d1c3f878fdb88ae7e` on site `arcusai` (`1d53db9b-1ce2-475f-a0c2-8846ad918168`). That site is not built from Git.
-- Site source is `arcus-core` branch `site/investigation-desk-intro` at `945c25c`. `arcus-core` `main` is still `e79c2f4` (2026-10-08).
-- Downloadable assets are still v1.4.1 from 2026-07-09. `desktop/package.json` is still `1.4.1`.
-- Those July binaries do not include later desktop fixes: transcript client, connectors, model list, Teams panel, Ask Arcus, local repo.
-- No Windows, Mac, or Linux installer was built for this update. A Mac `.dmg` was not attempted; this was done on Windows, which cannot produce one.
+- Site source recorded for that deploy: `arcus-core` branch `site/investigation-desk-intro` at `945c25c`.
 
 ## 1.4.1 — 2026-07-09
 
-Published assets. These are still the latest files a downloader can get. They are not the current product described on the site.
+July 9, 2026 files. They are not the current app. The current Windows installer is 1.4.2. Mac and Linux were not rebuilt.
 
 - `Arcus-Setup-1.4.1.exe`
 - `Arcus-1.4.1-arm64.dmg`
