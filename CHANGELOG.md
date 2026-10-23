@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 Installer history for https://github.com/Arcus-org/arcus-releases. Source lives in https://github.com/Arcus-org/arcus-core.
 
