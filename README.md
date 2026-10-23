@@ -1,4 +1,4 @@
-﻿# Arcus releases
+# Arcus releases
 
 Desktop installers for [Arcus](https://arcusai.netlify.app).
 
